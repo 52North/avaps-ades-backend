@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ows="http://www.opengis.net/ows/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:wps="http://www.opengis.net/wps/2.0" targetNamespace="http://www.opengis.net/wps/2.0"
+	xml:lang="en" version="2.0.0">
+	<include schemaLocation="http://schemas.opengis.net/wps/2.0/wps.xsd"/>	
+	<import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsAll.xsd"/>
+   <element name="UndeployResult" type="wps:UndeployResultType">
+      <annotation>
+         <documentation>UndeployProcess result.</documentation>
+      </annotation>
+   </element>
+   <complexType name="UndeployResultType">
+      <sequence>
+         <element name="UndeploymentDone" type="boolean"/>
+         <choice>
+            <sequence>
+               <annotation>
+                  <documentation>If UndeploymentDone = true</documentation>
+               </annotation>
+               <element ref="ows:Identifier" minOccurs="0">
+                  <annotation>
+                     <documentation>Identifier of the undeployed process.</documentation>
+                  </annotation>
+               </element>
+               <element ref="wps:Capabilities" minOccurs="0">
+                  <annotation>
+                     <documentation>Updated Capabilities document.</documentation>
+                  </annotation>
+               </element>
+            </sequence>
+            <element name="FailureReason" type="xs:string">
+               <annotation>
+                  <documentation>If UndeploymentDone = false</documentation>
+               </annotation>
+            </element>
+         </choice>
+      </sequence>
+   </complexType>
+</schema>
